@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Plik dodany</h2>
+  <p>Wypakowane pliki:</p>
+    <ul>
+    {% for file in file_list %}
+      <li><a href="{% url 'display_file' file_name=file %}">{{ file }}</a></li>
+    {% empty %}
+    <p>Nie dodano plików.</p>
+    {% endfor %}
+    </ul>
+{% endblock %}

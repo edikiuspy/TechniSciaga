@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  <p>{{ welcome_message }}</p>
+
+  <h2>Moje ściągi </h2>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'post_create' %}'">Dodaj ściąge</button>
+  <ul>
+    {% for post in posts %}
+    <div class="post">
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        <p>Autor: {{ post.author }}</p>
+        <p>Utworzono o: {{ post.created_at }}</p>
+        <p>Zaktualizowano o: {{ post.updated_at }}</p>
+        <p>
+            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'post_edit' pk=post.pk %}'">Edytuj</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'post_edit_wiki' pk=post.pk %}'">Edytuj(W)</button>
+            <button type="button" class="btn btn-danger" onclick="location.href='{% url 'post_delete' pk=post.pk %}'">Usuń</button>
+        </p>
+    </div>
+    {% empty %}
+    <p>Nie ma postów</p>
+    {% endfor %}
+  </ul>
+{% endblock %}

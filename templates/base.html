@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .add-post-button {
+          background-color: #007bff;
+          color: #fff;
+          padding: 0.5rem 1rem;
+          border-radius: 0.25rem;
+          text-decoration: none;
+        }
+
+        .add-post-button:hover {
+          background-color: #0062cc;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+        nav li.current a {
+            background-color: #fff;
+            color: #333;
+}
+        nav a:hover {
+            background-color: #fff;
+            color: #333;
+        }
+
+        main {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+        .btn {
+          display: inline-block;
+          padding: 8px 16px;
+          font-size: 16px;
+          font-weight: bold;
+          text-align: center;
+          text-decoration: none;
+          background-color: #4CAF50;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+          background-color: #3e8e41;
+        }
+
+        .btn-primary {
+          background-color: #007bff;
+        }
+
+        .btn-danger {
+          background-color: #dc3545;
+        }
+        a {
+          color: #007bff;
+          text-decoration: none;
+          font-weight: bold;
+          transition: color 0.2s;
+        }
+
+        a:hover {
+          color: #0056b3;
+        }
+
+        a:active {
+          color: #0056b3;
+          opacity: 0.8;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid #ccc;
+            width: 30%;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+    <ul>
+        {% if user_is_authenticated %}
+            <li{% if request.path == '/' %} class="current"{% endif %}><a href="{% url 'home' %}">Strona początkowa</a></li>
+            <li{% if request.path == '/profile/' %} class="current"{% endif %}><a href="{% url 'profile' %}">Profil</a></li>
+            <li><a href="{% url 'logout' %}">Wyloguj</a></li>
+        {% else %}
+            <li{% if request.path == '/' %} class="current"{% endif %}><a href="{% url 'home' %}">Strona początkowa</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Rejestracja</a></li>
+        {% endif %}
+    </ul>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        &copy; 2023 - Eduard Muntianov
+    </footer>
+</body>
+</html>

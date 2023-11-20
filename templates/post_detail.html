@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content|linebreaks  }}</p>
+    <ul>
+    <!--{% for file in file_list %}-->
+    <!--  <li><a href="{% url 'display_file' file_name=file %}">{{ file }}</a></li>-->
+    <!--{% empty %}-->
+    <!--<p>Nie ma dodanych pilków.</p>-->
+    <!--{% endfor %}-->
+    </ul>
+{% endblock %}

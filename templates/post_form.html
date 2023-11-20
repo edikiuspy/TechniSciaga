@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="{{ form.title.id_for_label }}">Nazwa:</label>
+      {{ form.title }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.content.id_for_label }}">Opis:</label>
+      {{ form.content }}
+    </div>
+  <!--  <div class="form-group">-->
+  <!--    <label for="file">Plik zip:</label>-->
+  <!--    <input type="file" name="file" id="file">-->
+  <!--    <p id="file-name"></p>-->
+  <!--  </div>-->
+  <button type="submit" class="btn btn-primary">Wyślij</button>
+  </form>
+  <!--<script>-->
+  <!--  const fileInput = document.getElementById('file');-->
+  <!--  const fileName = document.getElementById('file-name');-->
+
+  <!--  fileInput.addEventListener('change', (event) => {-->
+  <!--    fileName.textContent = event.target.files[0].name;-->
+  <!--  });-->
+  <!--</script>-->
+{% endblock %}
